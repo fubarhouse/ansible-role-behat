@@ -1,0 +1,8 @@
+---
+  
+# vagrant user
+vagrant_user: "vagrant"
+
+# locations
+behat_dir: "~/.behat"
+behat_location: "{{ behat_dir }}/bin/behat"

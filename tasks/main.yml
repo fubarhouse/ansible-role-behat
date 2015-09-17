@@ -1,0 +1,4 @@
+---
+# file: roles/fubarhouse.behat/tasks/main.yml
+
+- include: behat.yml

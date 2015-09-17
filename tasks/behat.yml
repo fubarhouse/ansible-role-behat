@@ -1,0 +1,32 @@
+---
+# file: roles/fubarhouse.behat/tasks/behat.yml
+
+- name: Behat | Check
+  sudo: yes
+  sudo_user: "{{ vagrant_user }}"
+  stat: path="{{ behat_location }}"
+  register: behat_result
+
+- name: Behat | Clone
+  sudo: yes
+  sudo_user: "{{ vagrant_user }}"
+  shell: "git clone https://github.com/Behat/Behat {{ behat_dir }}"
+  when: not behat_result.stat.exists
+
+- name: Behat | Get installer
+  sudo: yes
+  sudo_user: "{{ vagrant_user }}"
+  shell: "cd {{ behat_dir }} && wget -nc https://getcomposer.org/composer.phar"
+  when: not behat_result.stat.exists
+
+- name: Behat | Install
+  sudo: yes
+  sudo_user: "{{ vagrant_user }}"
+  shell: "cd {{ behat_dir }} && php composer.phar install"
+  when: not behat_result.stat.exists
+
+- name: "Behat | Configuring"
+  sudo: yes
+  sudo_user: "{{ vagrant_user }}"
+  raw: echo 'alias behat="~/.behat/bin/behat"' >> ~/.bashrc
+  when: not behat_result.stat.exists
