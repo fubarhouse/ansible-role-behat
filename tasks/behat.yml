@@ -2,10 +2,14 @@
 # file: roles/fubarhouse.behat/tasks/behat.yml
 
 - name: Behat | Check
+  become: yes
+  become_user: "{{ ansible_ssh_user }}"
   stat: path="{{ behat_location }}"
   register: behat_result
 
 - name: Behat | Git
+  become: no
+  become_user: "{{ ansible_ssh_user }}"
   git: repo=https://github.com/Behat/Behat
        dest={{ behat_dir }}
        clone=yes
@@ -13,13 +17,19 @@
        version=master
 
 - name: Behat | Get installer
+  become: yes
+  become_user: "{{ ansible_ssh_user }}"
   shell: "cd {{ behat_dir }} && curl -s http://getcomposer.org/installer | php"
   when: not behat_result.stat.exists
 
 - name: Behat | Install
+  sudo: yes
+  sudo_user: "{{ ansible_ssh_user }}"
   composer:  working-dir={{ behat_dir }}
   when: not behat_result.stat.exists
 
 - name: "Behat | Configure"
+  become: yes
+  become_user: "{{ ansible_ssh_user }}"
   raw: echo 'alias behat="./bin/behat"' >> ~/.bashrc
   when: not behat_result.stat.exists
