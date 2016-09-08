@@ -1,0 +1,10 @@
+---
+
+# ---
+# Role created from instruction set found on http://behat-drupal-extension.readthedocs.io/en/3.1/globalinstall.html
+# ---
+#
+
+- hosts: localhost
+  roles:
+    - role: ../../fubarhouse.drupal-extension/

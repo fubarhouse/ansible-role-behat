@@ -1,6 +1,9 @@
 # Ansible Role: Drupal Extension (Behat)
 
-Installs Behat on Debian/Ubuntu servers.
+[![Build Status](https://travis-ci.org/fubarhouse/fubarhouse.drupal-extension.svg?branch=master)](https://travis-ci.org/fubarhouse/fubarhouse.drupal-extension)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/fubarhouse/fubarhouse.drupal-extension/master/LICENSE)
+
+Installs Drupal Extension (Behat) on Debian/Ubuntu servers.
 
 ## Requirements
 
