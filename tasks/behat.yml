@@ -1,35 +1,30 @@
 ---
 # file: roles/fubarhouse.behat/tasks/behat.yml
 
-- name: Behat | Check
+- name: "Drupal Extension | Check"
   become: yes
-  become_user: "{{ ansible_ssh_user }}"
-  stat: path="{{ behat_location }}"
-  register: behat_result
+  become_user: "root"
+  file:
+    path: "{{ fubarhouse_behat.extension_dir }}"
+    state: directory
+    owner: "{{ fubarhouse_user }}"
+    mode: 0755
 
-- name: Behat | Git
-  become: no
-  become_user: "{{ ansible_ssh_user }}"
-  git: repo=https://github.com/Behat/Behat
-       dest={{ behat_dir }}
-       clone=yes
-       update=yes
-       version=master
+- name: "Drupal Extension | Check"
+  template:
+    src: "templates/drupal-extension.json"
+    dest: "{{ fubarhouse_behat.extension_dir }}/composer.json"
+    owner: "{{ fubarhouse_user }}"
+    mode: 0755
 
-- name: Behat | Get installer
-  become: yes
-  become_user: "{{ ansible_ssh_user }}"
-  shell: "cd {{ behat_dir }} && curl -s http://getcomposer.org/installer | php"
-  when: not behat_result.stat.exists
+- name: "Drupal Extension | Installing"
+  composer:
+    command: "install"
+    working_dir: "{{ fubarhouse_behat.extension_dir }}"
 
-- name: Behat | Install
-  sudo: yes
-  sudo_user: "{{ ansible_ssh_user }}"
-  composer:  working-dir={{ behat_dir }}
-  when: not behat_result.stat.exists
-
-- name: "Behat | Configure"
-  become: yes
-  become_user: "{{ ansible_ssh_user }}"
-  raw: echo 'alias behat="./bin/behat"' >> ~/.bashrc
-  when: not behat_result.stat.exists
+- name: "Drupal Extension | Symlinking"
+  file:
+    src: "{{ fubarhouse_behat.extension_exec }}"
+    dest: "{{ fubarhouse_behat.extension_sym }}"
+    owner: "{{ fubarhouse_user }}"
+    state: "link"

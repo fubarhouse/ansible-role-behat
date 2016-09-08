@@ -1,23 +1,25 @@
-# Ansible Role: Behat
+# Ansible Role: Drupal Extension (Behat)
 
 Installs Behat on Debian/Ubuntu servers.
 
 ## Requirements
 
-Requires `curl` to be installed on the server.
+* PHP
+* Composer
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
+In order to change the values below, rewrite the object using the example below:
 
 ```
-vagrant_user: "vagrant"
+fubarhouse_behat:
+  extension_version: "~3.0"
+  extension_dir: "/opt/drupalextension"
+  extension_exec: "/opt/drupalextension/bin/behat"
+  extension_sym: "/usr/local/bin/behat"
 ```
 
-```
-behat_dir: "~/.behat"
-behat_location: "{{ behat_dir }}/bin/behat"
-```
+Note: The version number uses composer syntax.
 
 ## Dependencies
 
@@ -26,13 +28,12 @@ behat_location: "{{ behat_dir }}/bin/behat"
 ## Example Playbook
 
 ```
-  - { role: fubarhouse.behat, when: '"behat" in installed_extras' }
+  - { role: fubarhouse.drupal-extension }
 ```
 
 ## Installation
 
-  * Add "behat" to the installed_extras variable in your config.yml file to use this role with the playbook example above.
-  * Add behat to playbook, as per the playbook example above.
+  * Add the Drupal Extension to playbook, as per the playbook example above.
 
 ## License
 
@@ -40,4 +41,4 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2015 by [Karl Hepworth](https://twitter.com/fubarhouse).
+This role was created for Behat directly in 2015 but rewritten for Drupal Extension in 2016 by [Karl Hepworth](https://twitter.com/fubarhouse).
