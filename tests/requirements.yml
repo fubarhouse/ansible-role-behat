@@ -1,7 +1,4 @@
 ---
 
-- name: geerlingguy.php
-  path: ../roles/
-
 - name: geerlingguy.composer
   path: ../roles/
