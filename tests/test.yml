@@ -7,6 +7,7 @@
 
 - hosts: localhost
   roles:
+    - role: ../../fubarhouse.drupal-extension/roles/geerlingguy.apache/
     - role: ../../fubarhouse.drupal-extension/roles/geerlingguy.php/
     - role: ../../fubarhouse.drupal-extension/roles/geerlingguy.composer/
     - role: ../../fubarhouse.drupal-extension/

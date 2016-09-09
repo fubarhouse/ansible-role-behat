@@ -19,6 +19,7 @@ install:
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
+  - git clone https://github.com/geerlingguy/ansible-role-apache.git /home/travis/build/fubarhouse/fubarhouse.drupal-extension/roles/geerlingguy.apache
   - git clone https://github.com/geerlingguy/ansible-role-php.git /home/travis/build/fubarhouse/fubarhouse.drupal-extension/roles/geerlingguy.php
   - git clone https://github.com/geerlingguy/ansible-role-composer.git /home/travis/build/fubarhouse/fubarhouse.drupal-extension/roles/geerlingguy.composer
   - cd tests
