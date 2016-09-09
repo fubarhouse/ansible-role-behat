@@ -1,8 +1,6 @@
 ---
 language: python
 python: "2.7"
-php:
-  - "5.6"
 
 # Install ansible
 addons:
@@ -21,6 +19,8 @@ install:
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
+  - git clone https://github.com/geerlingguy/ansible-role-php.git /home/travis/build/fubarhouse/fubarhouse.drupal-extension/roles/geerlingguy.php
+  - git clone https://github.com/geerlingguy/ansible-role-composer.git /home/travis/build/fubarhouse/fubarhouse.drupal-extension/roles/geerlingguy.composer
   - cd tests
   - ansible-playbook ./test.yml -i inventory --syntax-check
   - ansible-playbook -i inventory ./test.yml --sudo -vvvv
