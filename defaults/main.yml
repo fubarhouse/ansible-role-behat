@@ -9,7 +9,6 @@ fubarhouse_behat:
 php_version: "5.6"
 php_packages:
   - php5
-  - php5-apcu
   - php5-mcrypt
   - php5-cli
   - php5-common
@@ -17,7 +16,6 @@ php_packages:
   - php5-dev
   - php5-fpm
   - php5-gd
-  - php5-sqlite
   - php-pear
   - libpcre3-dev
 php_conf_paths:
@@ -30,5 +28,3 @@ php_extension_conf_paths:
   - /etc/php5/cli/conf.d
 php_fpm_daemon: php5-fpm
 php_fpm_conf_path: "/etc/php5/fpm"
-php_fpm_pool_conf_path: "/etc/php5/fpm/pool.d/www.conf"
-php_mysql_package: php5-mysql
