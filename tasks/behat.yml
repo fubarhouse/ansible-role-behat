@@ -1,30 +1,31 @@
 ---
 # file: roles/fubarhouse.behat/tasks/behat.yml
 
-- name: "Drupal Extension | Check"
+- name: "Behat | Check"
   become: yes
   become_user: "root"
   file:
-    path: "{{ fubarhouse_behat.extension_dir }}"
+    path: "{{ behat_dir }}"
     state: directory
     owner: "{{ fubarhouse_user }}"
     mode: 0755
 
-- name: "Drupal Extension | Check"
-  template:
-    src: "templates/drupal-extension.json"
-    dest: "{{ fubarhouse_behat.extension_dir }}/composer.json"
-    owner: "{{ fubarhouse_user }}"
-    mode: 0755
-
-- name: "Drupal Extension | Installing"
+- name: "Behat | Installing"
   composer:
-    command: "install"
-    working_dir: "{{ fubarhouse_behat.extension_dir }}"
+    command: "require"
+    arguments: "{{ behat_package }}:{{ behat_version }}"
+    working_dir: "{{ behat_dir }}"
 
-- name: "Drupal Extension | Symlinking"
+- name: "Behat | Installing Extensions"
+  composer:
+    command: "require"
+    arguments: "{{ item.package }}:{{ item.version }}"
+    working_dir: "{{ behat_dir }}"
+  with_items: "{{ behat_extensions }}"
+
+- name: "Behat | Symlinking"
   file:
-    src: "{{ fubarhouse_behat.extension_exec }}"
-    dest: "{{ fubarhouse_behat.extension_sym }}"
+    src: "{{ behat_exec }}"
+    dest: "{{ behat_sym }}"
     owner: "{{ fubarhouse_user }}"
     state: "link"

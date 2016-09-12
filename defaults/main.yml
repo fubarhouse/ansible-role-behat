@@ -1,30 +1,14 @@
 ---
 
-fubarhouse_behat:
-  extension_version: "~3.0"
-  extension_dir: "/opt/drupalextension"
-  extension_exec: "/opt/drupalextension/bin/behat"
-  extension_sym: "/usr/local/bin/behat"
-
-php_version: "5.6"
-php_packages:
-  - php5
-  - php5-mcrypt
-  - php5-cli
-  - php5-common
-  - php5-curl
-  - php5-dev
-  - php5-fpm
-  - php5-gd
-  - php-pear
-  - libpcre3-dev
-php_conf_paths:
-  - /etc/php5/fpm
-  - /etc/php5/apache2
-  - /etc/php5/cli
-php_extension_conf_paths:
-  - /etc/php5/fpm/conf.d
-  - /etc/php5/apache2/conf.d
-  - /etc/php5/cli/conf.d
-php_fpm_daemon: php5-fpm
-php_fpm_conf_path: "/etc/php5/fpm"
+behat_version: "3.*@stable"
+behat_package: "behat/behat"
+behat_dir: "/opt/behat"
+behat_exec: "/opt/behat/vendor/bin/behat"
+behat_sym: "/usr/local/bin/behat"
+behat_extensions:
+  - name: "Mink"
+    package: "behat/mink"
+    version: "@stable"
+  - name: "Mink Extension"
+    package: "behat/mink-extension"
+    version: "@stable"

@@ -1,9 +1,9 @@
-# Ansible Role: Drupal Extension (Behat)
+# Ansible Role: Behat
 
-[![Build Status](https://travis-ci.org/fubarhouse/fubarhouse.drupal-extension.svg?branch=master)](https://travis-ci.org/fubarhouse/fubarhouse.drupal-extension)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/fubarhouse/fubarhouse.drupal-extension/master/LICENSE)
+[![Build Status](https://travis-ci.org/fubarhouse/fubarhouse.behat.svg?branch=master)](https://travis-ci.org/fubarhouse/fubarhouse.behat)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/fubarhouse/fubarhouse.behat/master/LICENSE)
 
-Installs Drupal Extension (Behat) on Debian/Ubuntu servers.
+Installs Behat on Debian/Ubuntu servers.
 
 ## Requirements
 
@@ -12,17 +12,22 @@ Installs Drupal Extension (Behat) on Debian/Ubuntu servers.
 
 ## Role Variables
 
-In order to change the values below, rewrite the object using the example below:
-
 ```
-fubarhouse_behat:
-  extension_version: "~3.0"
-  extension_dir: "/opt/drupalextension"
-  extension_exec: "/opt/drupalextension/bin/behat"
-  extension_sym: "/usr/local/bin/behat"
+behat_version: "3.*@stable"
+behat_package: "behat/behat"
+behat_dir: "/opt/behat"
+behat_exec: "/opt/behat/vendor/bin/behat"
+behat_sym: "/usr/local/bin/behat"
+behat_extensions:
+  - name: "Mink"
+    package: "behat/mink"
+    version: "@stable"
+  - name: "Mink Extension"
+    package: "behat/mink-extension"
+    version: "@stable"
 ```
 
-Note: The version number uses composer syntax.
+Note: All version numbers use composer syntax.
 
 ## Dependencies
 
@@ -31,12 +36,12 @@ Note: The version number uses composer syntax.
 ## Example Playbook
 
 ```
-  - { role: fubarhouse.drupal-extension }
+  - { role: fubarhouse.behat }
 ```
 
 ## Installation
 
-  * Add the Drupal Extension to playbook, as per the playbook example above.
+  * Add Behat role to playbook, as per the playbook example above.
 
 ## License
 
@@ -44,4 +49,4 @@ MIT / BSD
 
 ## Author Information
 
-This role was created for Behat directly in 2015 but rewritten for Drupal Extension in 2016 by [Karl Hepworth](https://twitter.com/fubarhouse).
+This role was created for Behat directly in 2015 but rewritten in 2016 by [Karl Hepworth](https://twitter.com/fubarhouse).

@@ -1,8 +1,0 @@
-{
-  "require": {
-    "drupal/drupal-extension": "{{ fubarhouse_behat.extension_version }}"
-  },
-  "config": {
-    "bin-dir": "bin/"
-  }
-}
