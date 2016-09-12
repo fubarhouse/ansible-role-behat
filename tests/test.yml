@@ -3,7 +3,7 @@
 - hosts: localhost
   tasks:
     - name: include vars
-      include_vars: variables.yml
+      include_vars: ./variables.yml
   roles:
     - role: ../../fubarhouse.behat/roles/geerlingguy.apache/
     - role: ../../fubarhouse.behat/roles/geerlingguy.php/
