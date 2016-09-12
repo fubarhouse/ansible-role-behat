@@ -1,6 +1,7 @@
 ---
 
 - hosts: localhost
+  include_vars: variables.yml
   roles:
     - role: ../../fubarhouse.behat/roles/geerlingguy.apache/
     - role: ../../fubarhouse.behat/roles/geerlingguy.php/
