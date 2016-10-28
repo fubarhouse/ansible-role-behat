@@ -5,7 +5,7 @@
     - name: include vars
       include_vars: ./variables.yml
   roles:
-    - role: ../../fubarhouse.behat/roles/geerlingguy.apache/
-    - role: ../../fubarhouse.behat/roles/geerlingguy.php/
-    - role: ../../fubarhouse.behat/roles/geerlingguy.composer/
-    - role: ../../fubarhouse.behat/
+    - role: ../../ansible-role-behat/roles/geerlingguy.apache/
+    - role: ../../ansible-role-behat/roles/geerlingguy.php/
+    - role: ../../ansible-role-behat/roles/geerlingguy.composer/
+    - role: ../../ansible-role-behat/

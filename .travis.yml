@@ -19,9 +19,9 @@ install:
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
-  - git clone https://github.com/geerlingguy/ansible-role-apache.git /home/travis/build/fubarhouse/fubarhouse.behat/roles/geerlingguy.apache
-  - git clone https://github.com/geerlingguy/ansible-role-php.git /home/travis/build/fubarhouse/fubarhouse.behat/roles/geerlingguy.php
-  - git clone https://github.com/geerlingguy/ansible-role-composer.git /home/travis/build/fubarhouse/fubarhouse.behat/roles/geerlingguy.composer
+  - git clone https://github.com/geerlingguy/ansible-role-apache.git /home/travis/build/fubarhouse/ansible-role-behat/roles/geerlingguy.apache
+  - git clone https://github.com/geerlingguy/ansible-role-php.git /home/travis/build/fubarhouse/ansible-role-behat/roles/geerlingguy.php
+  - git clone https://github.com/geerlingguy/ansible-role-composer.git /home/travis/build/fubarhouse/ansible-role-behat/roles/geerlingguy.composer
   - cd tests
   - ansible-playbook ./test.yml -i inventory --syntax-check
   - ansible-playbook -i inventory ./test.yml --sudo -vvvv
